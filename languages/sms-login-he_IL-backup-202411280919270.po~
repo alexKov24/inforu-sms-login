@@ -1,0 +1,77 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SMS Login\n"
+"POT-Creation-Date: 2024-11-28\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Domain: sms-login\n"
+"Language: he_IL\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: sms-login.php:123
+msgid "Invalid phone number"
+msgstr "מספר טלפון לא תקין"
+
+#: sms-login.php:127
+msgid "Too many attempts. Please try again later."
+msgstr "יותר מדי ניסיונות. אנא נסה שוב מאוחר יותר"
+
+#: sms-login.php:132
+msgid "No user found with this phone number"
+msgstr "לא נמצא משתמש עם מספר טלפון זה"
+
+#: sms-login.php:138
+msgid "Failed to send OTP"
+msgstr "שליחת הקוד נכשלה"
+
+#: sms-login.php:142
+msgid "OTP sent successfully"
+msgstr "הקוד נשלח בהצלחה"
+
+#: sms-login.php:152
+msgid "Invalid OTP"
+msgstr "קוד לא תקין"
+
+#: sms-login.php:161
+msgid "Invalid or expired OTP"
+msgstr "קוד לא תקין או שפג תוקפו"
+
+#. Name of the plugin
+msgid "SMS Login"
+msgstr "כניסה באמצעות SMS"
+
+#. Description of the plugin
+msgid "Integrates with Inforu to enable OTP-based login"
+msgstr "משתלב עם Inforu לאפשר כניסה מבוססת קוד חד פעמי"
+
+#. Author of the plugin
+msgid "Alex Kovalev"
+msgstr "אלכס קובליוב"
+
+
+msgid "Login with Phone Number"
+msgstr "כניסה באמצעות מספר טלפון"
+
+msgid "Phone Number"
+msgstr "מספר טלפון"
+
+msgid "Please enter a valid phone number"
+msgstr "אנא הכנס מספר טלפון תקין"
+
+msgid "Send OTP"
+msgstr "שלח קוד"
+
+msgid "Enter OTP"
+msgstr "הכנס קוד"
+
+msgid "One-Time Password"
+msgstr "קוד חד פעמי"
+
+msgid "Please enter the 6-digit OTP"
+msgstr "אנא הכנס קוד בן 6 ספרות"
+
+msgid "Verify & Login"
+msgstr "אימות וכניסה"

@@ -17,3 +17,7 @@ This is a simple login page for Inforu SMS.
 
 1. make sure your users have 'contactphone_1' without it the plugin won't work
 2. make sure you have the api key
+3. define api key in your wp-config.php ```define('INFORU_API_KEY', 'your-api-key');```
+4. define sender in your wp-config.php ```define('INFORU_SENDER', 'SMSLogin');```
+5. define test mode in your wp-config.php ```define('SMS_LOGIN_TEST_MODE', true);```
+6. user shortcode ```[sms_login_form]```

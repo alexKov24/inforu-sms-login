@@ -46,14 +46,14 @@ class SMSLoginPlugin
     private function init_hooks()
     {
         add_action('plugins_loaded', [$this, 'load_plugin_textdomain']);
-        
+
         //add_action('login_footer', [$this, 'render_login_form']);
         add_shortcode('sms_login_form', [$this, 'render_login_form_shortcode']);
         add_action('wp_ajax_nopriv_verify_phone', [$this, 'handle_phone_verification']);
         add_action('wp_ajax_nopriv_verify_otp', [$this, 'handle_otp_verification']);
     }
-    
-    public function load_plugin_textdomain() 
+
+    public function load_plugin_textdomain()
     {
         load_plugin_textdomain(
             self::TEXT_DOMAIN,
@@ -61,19 +61,20 @@ class SMSLoginPlugin
             dirname(plugin_basename(__FILE__)) . '/languages/'
         );
     }
-    
 
-    public function render_login_form_shortcode($atts = []) {
+
+    public function render_login_form_shortcode($atts = [])
+    {
         if (is_user_logged_in()) {
             return '';
         }
-    
+
         wp_enqueue_script('sms-login', plugins_url('js/sms-login.js', __FILE__), ['jquery'], '1.1.0', true);
         wp_localize_script('sms-login', 'smsLoginAjax', [
             'ajaxurl' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('sms_login_nonce')
         ]);
-    
+
         ob_start();
         include plugin_dir_path(__FILE__) . 'templates/login-form.php';
         return ob_get_clean();
@@ -146,9 +147,10 @@ class SMSLoginPlugin
         wp_send_json_success(['redirect_url' => home_url()]);
     }
 
-    private function get_client_ip() {
+    private function get_client_ip()
+    {
         $ip = '';
-        
+
         // Check for forwarded IP first
         if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
             $forwarded_ips = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
@@ -158,7 +160,7 @@ class SMSLoginPlugin
         elseif (!empty($_SERVER['REMOTE_ADDR'])) {
             $ip = $_SERVER['REMOTE_ADDR'];
         }
-        
+
         // Validate IP address
         return filter_var($ip, FILTER_VALIDATE_IP) ? $ip : '';
     }
@@ -190,7 +192,7 @@ class SMSLoginPlugin
             error_log("Test Mode - OTP for $phone: $otp");
             return true;
         }
-        
+
         $message = sprintf(__('Your login code is: %s', self::TEXT_DOMAIN), $otp);
 
         $args = [
@@ -236,27 +238,26 @@ class SMSLoginPlugin
      */
     private function get_user_by_phone($phone)
     {
-        
+
         //contactphone_1
-        
+
         $users = get_users([
             'meta_key' => 'contactphone_1',
             'meta_value' => '',
             'meta_compare' => '!=',  // get all users with non-empty phone
             'role__not_in' => ['administrator']
         ]);
-        
-        foreach($users as $user) {
+
+        foreach ($users as $user) {
             $current_phone = get_user_meta($user->ID, 'contactphone_1', true);
-            
+
             // Sanitize it
             $sanitized_phone = $this->sanitize_number($current_phone);
-            
+
             if ($phone === $sanitized_phone) {
                 return $user;
             }
         }
-        
     }
 
     private function store_otp_data($phone, $otp, $user_id)
@@ -314,6 +315,4 @@ class SMSLoginPlugin
 
 add_action('plugins_loaded', function () {
     new SMSLoginPlugin();
-}, 0); 
-
-
+}, 0);
